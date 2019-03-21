@@ -1,3 +1,5 @@
+package com.interview.tdu_services;
+
 public class SynchronizedCircularListStringBuffer {
     private final String[] buff;
     private int capacity;
@@ -14,8 +16,8 @@ public class SynchronizedCircularListStringBuffer {
         this.buff = new String[capacity];
     }
 
-    public synchronized int putAndGetIndex(String s) throws InterruptedException{
-        if (indexFirstAdded < 0){
+    public synchronized int putAndGetIndex(String s){
+        if (amount == 0){
             buff[0] = s;
             indexFirstAdded = 0;
             indexLastAdded = 0;
@@ -30,14 +32,28 @@ public class SynchronizedCircularListStringBuffer {
         return indexLastAdded;
     }
 
-    public synchronized int removeAndGetIndex() throws InterruptedException{
-        String item = buff[indexFirstAdded];
-        buff[indexFirstAdded++] = null;
+    public synchronized int removeAndGetIndex(){
+        if(amount == 0){
+            return -1;
+        }
+
+        buff[indexFirstAdded] = null;
+        if (++indexFirstAdded == capacity){
+            indexFirstAdded = 0;
+        }
         amount--;
         return indexFirstAdded-1;
     }
 
     public boolean isFull(){
         return amount == capacity;
+    }
+
+    public String getContentFrom(int index){
+        return buff[index];
+    }
+
+    public String[] getArrayData(){
+        return buff;
     }
 }

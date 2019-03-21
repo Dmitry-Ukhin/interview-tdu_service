@@ -1,3 +1,7 @@
+package com.interview.tdu_services;
+
+import java.io.IOException;
+
 public class Writer extends Thread {
     private String name;
     private SynchronizedCircularListStringBuffer buffer;
@@ -9,19 +13,22 @@ public class Writer extends Thread {
 
     @Override
     public void run() {
-        while (true){
+        for (int i = 1; Application.isRunning(); i++){
+            if (i > 10000){
+                break;
+            }
             try {
                 if (buffer.isFull()){
                     Thread.sleep(200);
                     continue;
                 }
                 int index = buffer.putAndGetIndex("Thread " + name + " wrote data");
-                SimpleLogger.setHandler("process.log");
-                SimpleLogger.write("Thread "+name+" wrote data into cell "+index);
-            }catch (InterruptedException e){
+                MyLogger.log("Thread-writer "+name+" wrote data into cell "+index);
+            }catch (IOException | InterruptedException e){
                 System.err.println(e.getMessage());
                 break;
             }
+            System.out.println("Thread-writer "+name+" iteration: "+i);
         }
     }
 }

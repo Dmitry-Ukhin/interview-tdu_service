@@ -1,19 +1,21 @@
+package com.interview.tdu_services;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class SimpleLogger {
-    private static File HANDLER;
+    private File handler;
 
-    public static void setHandler(String handler) {
-        SimpleLogger.HANDLER = new File(handler);
+    public void setHandler(String handler) {
+        this.handler = new File(handler);
     }
 
-    public static void write(String msg){
+    public void write(String msg){
         FileWriter writer = null;
         try {
-            writer = new FileWriter(SimpleLogger.HANDLER);
+            writer = new FileWriter(handler, true);
             writer.write(LocalDateTime.now() + " >> " +msg+"\n");
             writer.close();
         } catch (IOException e) {
