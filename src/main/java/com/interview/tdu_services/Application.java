@@ -8,12 +8,8 @@ import org.eclipse.jetty.server.handler.ContextHandler;
 import java.io.IOException;
 
 public class Application {
-    private static SynchronizedCircularListStringBuffer buffer;
+    private static SynchronizedCircularListStringBuffer buffer = new SynchronizedCircularListStringBuffer();
     private static boolean isRunning;
-
-    static {
-        buffer = new SynchronizedCircularListStringBuffer();
-    }
 
     public static void main(String[] args) {
         AbstractHandler handler = new MyHandler();
