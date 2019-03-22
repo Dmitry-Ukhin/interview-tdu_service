@@ -44,7 +44,9 @@ public class SynchronizedCircularListStringBuffer {
         if (++indexFirstAdded == capacity){
             indexFirstAdded = 0;
         }
-        amount--;
+        if(--amount < 0){
+            amount = 0;
+        }
         return indexFirstAdded-1;
     }
 

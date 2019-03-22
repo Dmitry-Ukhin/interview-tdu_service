@@ -1,7 +1,5 @@
 package com.interview.tdu_services;
 
-import java.io.IOException;
-
 public class Reader extends Thread {
     private String name;
     private SynchronizedCircularListStringBuffer buffer;
@@ -14,16 +12,16 @@ public class Reader extends Thread {
     @Override
     public void run() {
 
+        int i = 0;
         while (true){
             try {
                 int index = buffer.removeAndGetIndex();
                 if (index < 0){
-                    Thread.sleep(50);
                     continue;
                 }
 
                 MyLogger.log("Thread-reader "+name+" read data from cell "+index);
-            }catch (IOException | InterruptedException e){
+            }catch (IllegalStateException e){
                 System.err.println(e.getMessage());
                 break;
             }

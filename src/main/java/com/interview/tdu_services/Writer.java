@@ -13,15 +13,16 @@ public class Writer extends Thread {
 
     @Override
     public void run() {
+        int i = 0;
         while (true){
             try {
                 if (buffer.isFull()){
-                    Thread.sleep(50);
                     continue;
                 }
+
                 int index = buffer.putAndGetIndex("Thread " + name + " wrote data");
                 MyLogger.log("Thread-writer "+name+" wrote data into cell "+index);
-            }catch (IOException | InterruptedException e){
+            }catch (IllegalStateException e){
                 System.err.println(e.getMessage());
                 break;
             }
