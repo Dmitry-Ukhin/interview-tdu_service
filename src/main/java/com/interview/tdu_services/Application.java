@@ -6,7 +6,6 @@ import java.io.IOException;
 
 public class Application {
     private static SynchronizedCircularListStringBuffer buffer = new SynchronizedCircularListStringBuffer();
-    private static boolean isRunning;
 
     public static void main(String[] args) {
         AbstractHandler handler = new MyHandler();
@@ -31,11 +30,6 @@ public class Application {
             System.err.println(e.getMessage());
             return;
         }
-
-        if (Application.isRunning()){
-            return;
-        }
-        isRunning = true;
 
         System.out.println("Init threads...");
         Writer writer1 = new Writer("1", buffer);
