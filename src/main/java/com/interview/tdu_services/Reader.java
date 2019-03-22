@@ -15,6 +15,7 @@ public class Reader extends Thread {
         int i = 0;
         while (true){
             try {
+                System.out.println("Reader-"+name+" iteration: "+i++);
                 int index = buffer.removeAndGetIndex();
                 if (index < 0){
                     continue;

@@ -12,8 +12,6 @@ public class MyLogger {
     private static FileHandler fileHandler;
     private static Logger logger;
 
-    private static List<String> buff = new ArrayList<>();
-
     static {
         logger = Logger.getLogger(MyLogger.class.getName());
     }
@@ -40,17 +38,7 @@ public class MyLogger {
             throw new IllegalStateException();
         }
 
-        if (buff.size() < 100){
-            buff.add(msg);
-        }else{
-            new Thread(() -> {
-                for (String str :buff) {
-                    logger.info(str);
-                }
-                buff.clear();
-                logger.info(msg);
-            }).start();
-        }
+        logger.info(msg);
     }
 
     public static void closeFile(){

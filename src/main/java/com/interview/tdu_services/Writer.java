@@ -1,7 +1,5 @@
 package com.interview.tdu_services;
 
-import java.io.IOException;
-
 public class Writer extends Thread {
     private String name;
     private SynchronizedCircularListStringBuffer buffer;
@@ -15,6 +13,8 @@ public class Writer extends Thread {
     public void run() {
         int i = 0;
         while (true){
+            System.out.println("Writer-"+name+" iteration: "+i++);
+
             try {
                 if (buffer.isFull()){
                     continue;
