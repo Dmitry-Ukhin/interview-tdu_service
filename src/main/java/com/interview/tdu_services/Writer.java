@@ -13,7 +13,7 @@ public class Writer extends Thread {
 
     @Override
     public void run() {
-        for (int i = 0; Application.isRunning() && i < 5000; i++){
+        while (true){
             try {
                 if (buffer.isFull()){
                     Thread.sleep(50);
@@ -25,7 +25,6 @@ public class Writer extends Thread {
                 System.err.println(e.getMessage());
                 break;
             }
-            System.out.println("Thread-writer "+name+" iteration: "+i);
         }
     }
 }

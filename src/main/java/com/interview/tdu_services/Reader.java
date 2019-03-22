@@ -14,7 +14,7 @@ public class Reader extends Thread {
     @Override
     public void run() {
 
-        for (int i = 0; Application.isRunning() && i < 5000; i++){
+        while (true){
             try {
                 int index = buffer.removeAndGetIndex();
                 if (index < 0){
@@ -27,7 +27,6 @@ public class Reader extends Thread {
                 System.err.println(e.getMessage());
                 break;
             }
-            System.out.println("Thread-reader "+name+" iteration: "+i);
         }
     }
 }

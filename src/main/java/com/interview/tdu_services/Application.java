@@ -1,9 +1,6 @@
 package com.interview.tdu_services;
 
-import org.eclipse.jetty.server.Handler;
-import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.AbstractHandler;
-import org.eclipse.jetty.server.handler.ContextHandler;
 
 import java.io.IOException;
 
@@ -30,7 +27,6 @@ public class Application {
             MyLogger.setFile("process.log");
         }catch (IOException e){
             System.err.println(e.getMessage());
-            stop();
             return;
         }
 
@@ -56,29 +52,7 @@ public class Application {
         reader1.start();
         reader2.start();
 
-//        System.out.println("Main wait child threads...");
-//        try {
-//            writer1.join();
-//            writer2.join();
-//            writer3.join();
-//            reader1.join();
-//            reader2.join();
-//        }catch (InterruptedException e){
-//            System.err.println(e.getMessage());
-//        }
-
-//        MyLogger.closeFile();
-//        stop();
         System.out.println("Main thread ended...");
-    }
-    
-    public static void stop(){
-        isRunning = false;
-        MyLogger.closeFile();
-    }
-    
-    public static void setCapacityBuffer(int capacity){
-        buffer = new SynchronizedCircularListStringBuffer(capacity);
     }
     
     public static SynchronizedCircularListStringBuffer getBuffer() {

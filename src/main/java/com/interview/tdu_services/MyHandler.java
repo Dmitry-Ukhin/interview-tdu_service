@@ -18,11 +18,6 @@ public class MyHandler extends AbstractHandler{
 
     @Override
     public void handle(String s, Request request, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
-        if (request.getAttribute("stop").equals("1")){
-            Application.stop();
-            httpServletResponse.getWriter().println("Application stopped");
-            return;
-        }
         if (!Application.isRunning()){
             Application.run();
         }
