@@ -13,13 +13,10 @@ public class Writer extends Thread {
 
     @Override
     public void run() {
-        for (int i = 1; Application.isRunning(); i++){
-            if (i > 10000){
-                break;
-            }
+        for (int i = 0; Application.isRunning() && i < 5000; i++){
             try {
                 if (buffer.isFull()){
-                    Thread.sleep(200);
+                    Thread.sleep(50);
                     continue;
                 }
                 int index = buffer.putAndGetIndex("Thread " + name + " wrote data");

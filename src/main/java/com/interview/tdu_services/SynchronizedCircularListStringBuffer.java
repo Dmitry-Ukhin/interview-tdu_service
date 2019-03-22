@@ -1,5 +1,8 @@
 package com.interview.tdu_services;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SynchronizedCircularListStringBuffer {
     private final String[] buff;
     private int capacity;
@@ -55,5 +58,13 @@ public class SynchronizedCircularListStringBuffer {
 
     public String[] getArrayData(){
         return buff;
+    }
+
+    public Map<Integer, String> getStatusCells(){
+        Map<Integer, String> map = new HashMap<>();
+        for(int i = 0; i < buff.length; i++){
+            map.put(i, buff[i]);
+        }
+        return map;
     }
 }
