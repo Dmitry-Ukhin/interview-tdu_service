@@ -18,10 +18,6 @@ public class MyHandler extends AbstractHandler{
 
     @Override
     public void handle(String s, Request request, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
-        if (!Application.isRunning()){
-            Application.run();
-        }
-
         Map<Integer, String> statusCells = Application.getBuffer().getStatusCells();
 
         httpServletResponse.setContentType("application/json");

@@ -14,6 +14,8 @@ public class Application {
 
         System.out.println("Starting server...");
 
+        startThreads();
+
         try {
             server.start();
         }catch (Exception e){
@@ -22,7 +24,7 @@ public class Application {
         System.out.println("Done...");
     }
     
-    public static void run(){
+    private static void startThreads(){
         try {
             MyLogger.setFile("process.log");
         }catch (IOException e){
@@ -51,8 +53,6 @@ public class Application {
         System.out.println("Start readers...");
         reader1.start();
         reader2.start();
-
-        System.out.println("Main thread ended...");
     }
     
     public static SynchronizedCircularListStringBuffer getBuffer() {
