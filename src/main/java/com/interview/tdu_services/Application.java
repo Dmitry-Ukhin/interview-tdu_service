@@ -52,8 +52,4 @@ public class Application {
     public static SynchronizedCircularListStringBuffer getBuffer() {
         return buffer;
     }
-    
-    public static boolean isRunning(){
-        return isRunning;
-    }
 }
